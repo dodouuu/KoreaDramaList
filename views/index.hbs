@@ -1,0 +1,52 @@
+<!-- search bar -->
+<div class="container search-bar">
+  <div class="search-bar-outer">
+    <div class="search-bar-inner">
+      <form action="/search">
+        <h6 class="mb-2">(輸入文字搜尋、或者點擊分類標籤)</h6>
+        <div class="input-group">
+          <input type="text" name="keyword" class="form-control" placeholder="輸入劇名、分類標籤、年份"
+            aria-label="Restaurant Name..." value="{{keywords}}" aria-describedby="search-button">
+          <div class="input-group-append">
+            <button type="submit" id="search-button" class="btn btn-outline-dark">
+              search
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Korea Drama list -->
+<div class="container">
+  <div class="row">
+    {{#each KoreaDramas}}
+
+    <div class="card col-xl-3 col-lg-4 col-md-6 col-12">
+      <img src="{{this.img}}" class="card-img-top" alt="{{this.name}}">
+      <div class="card-body">
+        {{#if this.name}}
+        <h5 class="card-title">中文：{{this.name}}</h5>
+        {{/if}}
+        {{#if this.name_en}}
+        <h5 class="card-title">英文：{{this.name_en}}</h5>
+        {{/if}}
+
+        <h5 class="card-title">年份：{{this.year}}</h5>
+        <h5 class="card-title">集數：{{this.episode}}</h5>
+        <p class="card-text">
+          {{this.description}}
+        </p>
+
+        <a href="/KoreaDramas/{{this._id}}" class="btn btn-primary">info</a>
+
+        {{#each this.labels}}
+        <span class="badge bg-dark">{{this}}</span>
+        {{/each}}
+      </div>
+    </div>
+
+    {{/each}}
+  </div>
+</div>
